@@ -131,6 +131,8 @@ import {
     XMarkIcon,
 } from '@heroicons/vue/24/outline'
 import { MagnifyingGlassIcon } from '@heroicons/vue/20/solid'
+import store from "@/store";
+import router from "@/router";
 
 const navigation = [
     { name: 'Dashboard', href: '/app/dashboard', icon: HomeIcon, current: true },
@@ -141,8 +143,16 @@ const navigation = [
 const userNavigation = [
     { name: 'Your Profile', href: '#' },
     { name: 'Settings', href: '#' },
-    { name: 'Sign out', href: '#' },
+    { name: 'Sign out', href: '/logout' },
 ]
+
+function logout(){
+    store.dispatch('logout')
+        .then(()=>{
+            router.push({name:'login'})
+        })
+}
+
 
 const sidebarOpen = ref(false)
 </script>

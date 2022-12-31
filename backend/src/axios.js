@@ -15,11 +15,11 @@ axiosClient.interceptors.request.use(config=>{
 axiosClient.interceptors.response.use(response=>{
     return response;
 },error => {
-    if(error.response.data==401){
+    if(error.response.status==401){
         sessionStorage.removeItem('TOKEN')
         router.push({name:'login'})
     }
-    throw error;
+    console.error(error);
 })
 
 export default axiosClient
