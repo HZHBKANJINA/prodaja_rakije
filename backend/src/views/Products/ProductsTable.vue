@@ -59,6 +59,7 @@
                                 leave-from-class="transform scale-100 opacity-100"
                                 leave-to-class="transform scale-95 opacity-0"
                             >
+                                <Menu>
                                 <MenuItems
                                     class="absolute right-0 mt-2 w-56 origin-top-right divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none"
                                 >
@@ -147,6 +148,7 @@
                                         </MenuItem>
                                     </div>
                                 </MenuItems>
+                                </Menu>
                             </transition>
                         </td>
                     </tr>
