@@ -1,4 +1,3 @@
-
 <template>
 
     <div>
@@ -79,12 +78,17 @@
                             <span class="sr-only">View notifications</span>
                             <BellIcon class="h-6 w-6" aria-hidden="true" />
                         </button>
+                        <svg class="w-full">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M10.5 6h9.75M10.5 6a1.5 1.5 0 11-3 0m3 0a1.5 1.5 0 10-3 0M3.75 6H7.5m3 12h9.75m-9.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-3.75 0H7.5m9-6h3.75m-3.75 0a1.5 1.5 0 01-3 0m3 0a1.5 1.5 0 00-3 0m-9.75 0h9.75" />
+                        </svg>
+
 
                         <!-- Profile dropdown -->
                         <Menu as="div" class="relative ml-3">
                             <div>
                                 <MenuButton class="flex max-w-xs items-center rounded-full bg-white text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2">
                                     <span class="sr-only">Open user menu</span>
+                                    <small>{{currentUser.name}}</small>
                                     <img class="h-8 w-8 rounded-full" src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80" alt="" />
                                 </MenuButton>
                             </div>
@@ -108,7 +112,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue'
+import {computed, onMounted, ref} from 'vue'
 import {
     Dialog,
     DialogPanel,
@@ -155,4 +159,10 @@ function logout(){
 
 
 const sidebarOpen = ref(false)
+
+const currentUser=computed(()=> store.state.user.data);
+
+onMounted(()=>{
+    store.dispatch('getUser')
+})
 </script>

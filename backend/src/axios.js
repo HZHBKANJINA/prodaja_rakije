@@ -3,12 +3,13 @@ import store from "@/store";
 import router from "@/router";
 import config from "tailwindcss/defaultConfig";
 
+console.log(import.meta.env)
 const axiosClient =axios.create({
-    baseURL: '${import.meta.env.VITE_API_BASE_URL}/api'
+    baseURL: `${import.meta.env.VITE_API_BASE_URL}/api`
 })
 
 axiosClient.interceptors.request.use(config=>{
-    config.headers.Authorization = 'Bearer ${store.state.user.token}'
+    config.headers.Authorization = `Bearer ${store.state.user.token}`
     return config;
 })
 
@@ -19,7 +20,7 @@ axiosClient.interceptors.response.use(response=>{
         sessionStorage.removeItem('TOKEN')
         router.push({name:'login'})
     }
-    console.error(error);
+    throw error;
 })
 
 export default axiosClient
